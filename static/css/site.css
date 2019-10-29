@@ -1,0 +1,78 @@
+body {
+    margin-left: 20px;
+}
+p {
+    margin: 0 0 0.1em;
+}
+.panel {
+    background-color: #eee;
+    border: 1px solid black;
+    border-radius: 1em;
+    width: 20em;
+    min-height: 5em;
+    text-overflow: clip;
+    box-sizing: border-box;
+    clear: left;
+}
+.panel-heading {
+    background-image: inherit;
+    border-radius: 1em 1em 0 0;
+    border-bottom: 1px solid black;
+    /*text-indent: 0.5em;*/
+}
+.panel-body {
+    padding: 0;
+    margin: 0.5em;
+}
+input.switch, input.switch-reply {
+    display: none;
+}
+
+.reply-button-wrapper {
+    float: right;
+}
+.reply-button {
+    float: right;
+    border: 1px solid grey;
+    width: 2em;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+label {
+    cursor: text;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: inherit;
+}
+textarea, form, label {
+    width: 100%;
+}
+button {
+    float: right;
+}
+
+.panel-reply {
+    display: none;
+    float: left;
+    margin-top: 5px;
+    margin-left: 1em;
+    width: 19em;
+}
+
+input.switch ~ label .panel1 {
+    display: block;
+}
+input.switch ~ label .panel2 {
+    display: none;
+}
+input.switch:checked ~ label .panel1 {
+    display: none;
+}
+input.switch:checked ~ label .panel2 {
+    display: block;
+}
+
+input.switch-reply:checked ~ .panel-reply {
+    display: block;
+}

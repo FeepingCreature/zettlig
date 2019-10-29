@@ -1,0 +1,47 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Zettlig Demo{% endblock %}
+{%- block styles %}
+<link rel="stylesheet" href="static/css/bootstrap.min.css">
+<link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="static/css/site.css">
+{%- endblock styles %}
+
+{% block content %}
+  <h3>★ Zettlig demo</h3><hr/>
+  {% for zettel in zettels %}
+    <div class="panel panel-default" style="margin-left: {{ zettel.indent() * 15 }}px; ">
+      <div class="panel-heading"><b>-&nbsp;</b>{{ zettel.name }}</div>
+      <input type="checkbox" id="{{ toggle.id(zettel) }}" class="switch" autocomplete="off">
+      <input type="checkbox" id="{{ toggle.reply(zettel) }}" class="switch-reply" autocomplete="off">
+      <label for="{{ toggle.id(zettel) }}">
+        <div class="panel-body panel1">
+          {{ zettel.read() | markdown }}
+          <div class="reply-button-wrapper">
+            <label for="{{ toggle.reply(zettel) }}">
+              <div class="glyphicon glyphicon-chevron-down reply-button" aria-hidden="true"></div>
+            </label>
+          </div>
+        </div>
+        <div class="panel-body panel2">
+          <form action="zettel/{{ zettel.name }}/edit" method="post">
+            <textarea name="content" rows="8" autocomplete="off">{{ zettel.read() }}</textarea>
+            <button type="submit" class="btn btn-default btn-rg">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
+          </form>
+        </div>
+      </label>
+      <div class="panel panel-default panel-reply">
+        <div class="panel-heading"><b>+&nbsp;</b>{{ zettel.next_name() }}</div>
+        <div class="panel-body">
+          <form action="zettel/{{ zettel.next_name() }}/edit" method="post">
+            <textarea name="content" rows="8" autocomplete="off"></textarea>
+            <button type="submit" class="btn btn-default btn-rg">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

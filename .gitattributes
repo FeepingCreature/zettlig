@@ -1,0 +1,7 @@
+static/css/bootstrap.min.css filter=lfs diff=lfs merge=lfs -text
+static/css/bootstrap.min.css.map filter=lfs diff=lfs merge=lfs -text
+static/css/bootstrap-theme.min.css filter=lfs diff=lfs merge=lfs -text
+static/css/bootstrap-theme.min.css.map filter=lfs diff=lfs merge=lfs -text
+static/fonts/glyphicons-halflings-regular.ttf filter=lfs diff=lfs merge=lfs -text
+static/fonts/glyphicons-halflings-regular.woff filter=lfs diff=lfs merge=lfs -text
+static/fonts/glyphicons-halflings-regular.woff2 filter=lfs diff=lfs merge=lfs -text
