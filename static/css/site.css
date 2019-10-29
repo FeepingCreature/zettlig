@@ -1,6 +1,9 @@
 body {
     margin-left: 20px;
 }
+h1, h2, h3 {
+    margin-top: 0;
+}
 p {
     margin: 0 0 0.1em;
 }
@@ -9,6 +12,7 @@ p {
     border: 1px solid black;
     border-radius: 1em;
     width: 20em;
+    margin-bottom: 5px;
     min-height: 5em;
     text-overflow: clip;
     box-sizing: border-box;
@@ -18,6 +22,7 @@ p {
     background-image: inherit;
     border-radius: 1em 1em 0 0;
     border-bottom: 1px solid black;
+    padding: 1px 10px;
     /*text-indent: 0.5em;*/
 }
 .panel-body {
@@ -26,6 +31,35 @@ p {
 }
 input.switch, input.switch-reply {
     display: none;
+}
+.inline-form {
+    display: inline;
+}
+.sidebar {
+    display: inline-block;
+    float: left;
+    width: 10em;
+    min-height: 10em;
+    background-color: #fafaf7;
+    padding: 0px 10px 10px 10px;
+}
+li.link {
+    display: flex;
+    line-height: 1.2;
+}
+li.link form {
+    flex-grow: 1;
+    line-height: 0.8;
+}
+.main {
+    display: inline-block;
+    float: left;
+}
+.unbutton {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .reply-button-wrapper {
@@ -48,7 +82,7 @@ label {
 textarea, form, label {
     width: 100%;
 }
-button {
+.close-button, .save-button {
     float: right;
 }
 

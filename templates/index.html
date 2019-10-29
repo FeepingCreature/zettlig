@@ -7,41 +7,67 @@
 {%- endblock styles %}
 
 {% block content %}
+
   <h3>★ Zettlig demo</h3><hr/>
-  {% for zettel in zettels %}
-    <div class="panel panel-default" style="margin-left: {{ zettel.indent() * 15 }}px; ">
-      <div class="panel-heading"><b>-&nbsp;</b>{{ zettel.name }}</div>
-      <input type="checkbox" id="{{ toggle.id(zettel) }}" class="switch" autocomplete="off">
-      <input type="checkbox" id="{{ toggle.reply(zettel) }}" class="switch-reply" autocomplete="off">
-      <label for="{{ toggle.id(zettel) }}">
-        <div class="panel-body panel1">
-          {{ zettel.read() | markdown }}
-          <div class="reply-button-wrapper">
-            <label for="{{ toggle.reply(zettel) }}">
-              <div class="glyphicon glyphicon-chevron-down reply-button" aria-hidden="true"></div>
-            </label>
+  <div class="sidebar">
+    <ul class="nav nav-sidebar">
+      <li><h4>Zettel</h4></li>
+      <hr>
+      {% for node in zetteltree %}
+        <li class="link">
+          <samp>{{ node.indentmarker()|safe }}</samp>
+          <form action="trace/{{ node.name }}/add" method="post" class="inline-form">
+            <button type="submit" class="unbutton">
+              <span>{{ node.name }}</span>
+            </button>
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="main">
+    {% for zettel in trace %}
+      <div class="panel panel-default" style="margin-left: {{ zettel.indent() * 15 }}px; ">
+        <div class="panel-heading">
+          <b>-&nbsp;</b>{{ zettel.name }}
+          <form action="trace/{{ zettel.name }}/remove" method="post" class="inline-form">
+            <button type="submit" class="unbutton close-button">
+              <div class="glyphicon glyphicon-remove" aria-hidden="true"></div>
+            </button>
+          </form>
+        </div>
+        <input type="checkbox" id="{{ toggle.id(zettel) }}" class="switch" autocomplete="off">
+        <input type="checkbox" id="{{ toggle.reply(zettel) }}" class="switch-reply" autocomplete="off">
+        <label for="{{ toggle.id(zettel) }}">
+          <div class="panel-body panel1">
+            {{ zettel.read() | markdown }}
+            <div class="reply-button-wrapper">
+              <label for="{{ toggle.reply(zettel) }}">
+                <div class="glyphicon glyphicon-chevron-down reply-button" aria-hidden="true"></div>
+              </label>
+            </div>
+          </div>
+          <div class="panel-body panel2">
+            <form action="zettel/{{ zettel.name }}/edit" method="post">
+              <textarea name="content" rows="8" autocomplete="off">{{ zettel.read() }}</textarea>
+              <button type="submit" class="btn btn-default btn-rg save-button">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              </button>
+            </form>
+          </div>
+        </label>
+        <div class="panel panel-default panel-reply">
+          <div class="panel-heading"><b>+&nbsp;</b>{{ zettel.next_name() }}</div>
+          <div class="panel-body">
+            <form action="zettel/{{ zettel.name }}/insert/{{ zettel.next_name() }}" method="post">
+              <textarea name="content" rows="8" autocomplete="off"></textarea>
+              <button type="submit" class="btn btn-default btn-rg save-button">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              </button>
+            </form>
           </div>
         </div>
-        <div class="panel-body panel2">
-          <form action="zettel/{{ zettel.name }}/edit" method="post">
-            <textarea name="content" rows="8" autocomplete="off">{{ zettel.read() }}</textarea>
-            <button type="submit" class="btn btn-default btn-rg">
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </button>
-          </form>
-        </div>
-      </label>
-      <div class="panel panel-default panel-reply">
-        <div class="panel-heading"><b>+&nbsp;</b>{{ zettel.next_name() }}</div>
-        <div class="panel-body">
-          <form action="zettel/{{ zettel.next_name() }}/edit" method="post">
-            <textarea name="content" rows="8" autocomplete="off"></textarea>
-            <button type="submit" class="btn btn-default btn-rg">
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            </button>
-          </form>
-        </div>
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
 {% endblock %}
