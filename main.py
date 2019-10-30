@@ -127,6 +127,9 @@ class Zettel:
     def exists(self):
         return path.exists(self.file)
 
+    def preview(self):
+        return self.read().split("\n")[0]
+
 class Trace:
     def __init__(self, file = u'data/trace.txt'):
         self.file = file

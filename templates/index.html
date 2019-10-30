@@ -17,10 +17,11 @@
         <li class="link">
           <samp>{{ node.indentmarker()|safe }}</samp>
           <form action="trace/{{ node.name }}/add" method="post" class="inline-form">
-            <button type="submit" class="unbutton">
+            <button type="submit" class="unbutton" id="linkbutton-{{ node.name }}">
               <span>{{ node.name }}</span>
             </button>
           </form>
+          <label for="linkbutton-{{ node.name }}" class="preview">{{ node.zettel.preview() }}</label>
         </li>
       {% endfor %}
     </ul>

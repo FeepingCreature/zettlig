@@ -38,18 +38,31 @@ input.switch, input.switch-reply {
 .sidebar {
     display: inline-block;
     float: left;
-    width: 10em;
+    width: 15em;
     min-height: 10em;
     background-color: #fafaf7;
     padding: 0px 10px 10px 10px;
 }
 li.link {
+    line-height: 1;
+    white-space: nowrap;
     display: flex;
-    line-height: 1.2;
 }
 li.link form {
-    flex-grow: 1;
-    line-height: 0.8;
+    line-height: 0.75;
+    margin-right: 0.5em;
+    width: intrinsic;
+    width: -moz-max-content;
+    width: -webkit-max-content;
+    width: max-content;
+}
+li.link .preview {
+    color: grey;
+    font-style: oblique;
+    font-size: smaller;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .main {
     display: inline-block;
